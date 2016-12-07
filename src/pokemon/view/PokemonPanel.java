@@ -56,18 +56,83 @@ public class PokemonPanel extends JPanel
 		setupListeners();
 	}
 	
-	public void setupPanel()
+	private void setupPanel()
 	{
 		
 	}
 	
-	public void setupLayout()
+	private void setupLayout()
 	{
 		
 	}
 	
-	public void setupListeners()
+	private void setupDropdown()
 	{
 		
 	}
+	
+	private void setupListeners()
+	{
+		pokedexSelector.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent selection)
+			{
+				int selected = pokedexSelector.getSelectedIndex();
+				nameField.setText(baseController.getPokedex().get(selected).getName());
+				numberField.setText(baseController.getPokedex().get(selected).getNumber() + "");
+				combatField.setText(baseController.getPokedex().get(selected).getAttackPoints() + "");
+				speedField.setText(baseController.getPokedex().get(selected).getSpeed() + "");
+				healthField.setText(baseController.getPokedex().get(selected).getHealthPoints() + "");
+				advancedArea.setText(baseController.getPokedex().get(selected).getPokemonInformation()
+						+ "\n\n" + baseController.getPokedex.get(selected).getClass().getSimpleName());
+				changeColorBasedOnData(baseController.getPokedex().get(selected).getClass().getSimpleName());
+				changeImageDisplay(baseController.getPokedex().get(selected).getClass().getSimpleName());
+			}
+		});
+	}
+
+	
+	private void changeColorBasedOnData(String data)
+	{
+		if (data.contains("Eletric"))
+		{
+			this.setBackground(Color.YELLOW);
+		}
+		else if (data.contains("Fire"))
+		{
+			this.setBackground(Color.RED);
+		}
+		else if (data.contains("Grass"))
+		{
+			this.setBackground(Color.GREEN);
+		}
+		else if (data.contains("Water"))
+		{
+			this.setBackground(Color.BLUE);
+		}
+		else if (data.contains("Rock"))
+		{
+			this.setBackground(Color.GRAY);
+		}
+		else
+		{
+			this.setBackground(Color.ORANGE);
+		}
+		repaint();
+	}
+
+
+
+	
+	private void changeImageDisplay()
+	{
+		
+	}
+	
+	private boolean isValidDouble()
+	{
+		
+	}
+	
+	
 }

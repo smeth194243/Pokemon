@@ -7,4 +7,10 @@ public class PokemonController
 	{
 		
 	}
+	
+	private void buildPokedex()
+	{
+		pokedex.add(new Charmander("Fiery Lizard"));
+		pokedex.add(new Charizard("Lava Dragon"));
+	}
 }
