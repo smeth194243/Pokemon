@@ -30,7 +30,18 @@ public class PokemonController
 		pokedex.add(new Pidgey("Tweety Bird"));
 		pokedex.add(new Caterpie("Swift Slug"));
 		
+	} 
+	
+	public String[] buildPokedexText()
+	{
+		String [] pokemonNames = new String[pokedex.size()];
 		
+		for(int index = 0; index < pokedex.size(); index++)
+		{
+			pokemonNames[index] = pokedex.get(index).getName();
+		}
+		
+		return pokemonNames;
 		
 	}
 }
