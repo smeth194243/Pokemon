@@ -1,14 +1,25 @@
 package pokemon.controller;
 
 import java.util.ArrayList;
+import pokemon.model.*;
+import pokemon.view.PokemonFrame;
+import javax.swing.JOptionPane;
 
 public class PokemonController
 {
 	private ArrayList<Pokemon> pokedex;
+	private PokemonFrame baseFrame;
 	
+	public void PokemonController()
+	{
+		pokedex = new ArrayList<Pokemon>();
+		buildPokedex();
+		
+		baseFrame = new PokemonFrame(this);
+	}
 	public void start()
 	{
-		
+		JOptionPane.showMessageDialog(baseFrame, "Welcome to the Pokemon interface!");
 	}
 	
 	private void buildPokedex()
