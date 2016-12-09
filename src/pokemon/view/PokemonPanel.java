@@ -1,13 +1,10 @@
 package pokemon.view;
 
-
-import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Color;
 import pokemon.controller.PokemonController;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PokemonPanel extends JPanel
 {
@@ -117,8 +114,66 @@ public class PokemonPanel extends JPanel
 				changeImageDisplay(baseController.getPokedex().get(selected).getClass().getSimpleName());
 			}
 		});
+		
+		updateButton.addActionListener(new ActionListener()
+		{
+				
+		});
+		
+		this.addMouseListener(new MouseListener() 
+		{
+			public void mouseEntered(MouseEvent entered)
+			{
+	//			JOptionPane.showMessageDialog(baseController.getBaseFrame(), "The mouse entered the program." );
+			}
+			
+			public void mouseReleased(MouseEvent released)
+			{
+	//			System.out.println("Released");
+			}
+			
+			public void mouseExited(MouseEvent exited)
+			{
+	//			JOptionPane.showMessageDialog(baseController.getBaseFrame(), "The mouse exited the program." );
+			}
+			
+			public void mouseClicked(MouseEvent clicked)
+			{
+	//			System.out.println("Clicked");
+			}
+			
+			public void mousePressed(MouseEvent pressed)
+			{
+	//			System.out.println("Pressed");
+			}
+		});
+		
+		this.addMouseMotionListener(new MouseMotionListener()
+				{
+					public void mouseDragged(MouseEvent dragged)
+					{
+						
+					}
+					
+					public void mouseMoved(MouseEvent moved)
+					{
+						if(Math.abs(moved.getX() - updateButton.getX()) < 5 || (Math.abs(moved.getY() - updateButton.getY()) <5))
+						{
+							updateButton.setLocation(moved.getX()  + 10,  moved.getY() - 10 );
+						}
+					}
+				});
 	}
 
+	private void setRandomColor()
+	{
+		int red = (int) (Math.random() * 256);
+		int green = (int) (Math.random() * 256);
+		int blue = (int) (Math.random() * 256);
+		
+		this.setBackground(new Color(red, green, blue));
+		
+	}
 	
 	private void changeColorBasedOnData(String data)
 	{
@@ -152,12 +207,12 @@ public class PokemonPanel extends JPanel
 
 
 	
-	private void changeImageDisplay()
+	private void changeImageDisplay(String name)
 	{
 		
 	}
 	
-	private boolean isValidDouble()
+	private boolean isValidDouble(String input)
 	{
 		
 	}
