@@ -22,6 +22,13 @@ public class Charizard extends Pokemon implements Fire, Flying
 		return this.getCombatPoints() * 10;
 	}
 	
+	public int Fly()
+	{
+		return 0;
+	}
 	
-	
+	public int AirSlice()
+	{
+		return 250;
+	}
 }
