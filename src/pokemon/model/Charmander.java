@@ -11,4 +11,14 @@ public class Charmander extends Pokemon implements Fire
 	{
 		super(name, 4);
 	}
+	
+	public int Ember()
+	{
+		return 15;
+	}
+	
+	public int FirePunch()
+	{
+		return this.getCombatPoints() * 10;
+	}
 }
