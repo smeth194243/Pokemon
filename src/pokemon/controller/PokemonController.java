@@ -49,4 +49,10 @@ public class PokemonController
 	{
 		return pokedex;
 	}
+	
+	public void updateSelected(int index, String name, int combat, int health, double speed)
+	{
+		Pokemon current = pokedex.get(index);
+		this.name = name;
+	}
 }

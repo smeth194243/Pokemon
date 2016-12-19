@@ -39,7 +39,7 @@ public class PokemonPanel extends JPanel
 		this.speedField = new JTextField(5);
 		this.numberField = new JTextField(5);
 		this.advancedArea = new JTextArea(10,25);
-		this.pokedexSelector = new JComboBox(new String [] {"egg", "geodude", "pika", "rattata"});
+		this.pokedexSelector = new JComboBox(baseController.buildPokedexText());
 		this.advancedLabel = new JLabel("Advanced information:");
 		this.combatLabel = new JLabel("Combat Points:");
 		this.healthLabel = new JLabel("Health Points:");
@@ -105,7 +105,7 @@ public class PokemonPanel extends JPanel
 				int selected = pokedexSelector.getSelectedIndex();
 				nameField.setText(baseController.getPokedex().get(selected).getName());
 				numberField.setText(baseController.getPokedex().get(selected).getNumber() + "");
-				combatField.setText(baseController.getPokedex().get(selected).getAttackPoints() + "");
+				combatField.setText(baseController.getPokedex().get(selected).getCombatPoints() + "");
 				speedField.setText(baseController.getPokedex().get(selected).getSpeed() + "");
 				healthField.setText(baseController.getPokedex().get(selected).getHealthPoints() + "");
 				advancedArea.setText(baseController.getPokedex().get(selected).getPokemonInformation()
@@ -117,7 +117,20 @@ public class PokemonPanel extends JPanel
 		
 		updateButton.addActionListener(new ActionListener()
 		{
-				
+				public void actionPerformed(ActionEvent selection)
+				{
+					if(isValidName(nameField.getText()) && isValidInteger(combatField.getText())
+							&& isValidInteger(healthField.getText()) && isValidDouble(speedField.getText()))
+					{
+						int selected = pokedexSelector.getSelectedIndex();
+								
+						baseController.updateSelected(selected,
+																				nameField.getText(),
+																				Integer.parseInt(combatField.getText()),
+																				Integer.parseInt(healthField.getText()),
+																				Double.parseDouble(speedField.getText()));
+					}
+				}
 		});
 		
 		this.addMouseListener(new MouseListener() 
@@ -185,7 +198,7 @@ public class PokemonPanel extends JPanel
 		{
 			this.setBackground(Color.RED);
 		}
-		else if (data.contains("Grass"))
+		else if (data.contains("Bug"))
 		{
 			this.setBackground(Color.GREEN);
 		}
@@ -193,7 +206,7 @@ public class PokemonPanel extends JPanel
 		{
 			this.setBackground(Color.BLUE);
 		}
-		else if (data.contains("Rock"))
+		else if (data.contains("Flying"))
 		{
 			this.setBackground(Color.GRAY);
 		}
