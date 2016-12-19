@@ -44,4 +44,9 @@ public class PokemonController
 		return pokemonNames;
 		
 	}
+	
+	public ArrayList<Pokemon> getPokedex()
+	{
+		return pokedex;
+	}
 }

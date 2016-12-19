@@ -109,7 +109,7 @@ public class PokemonPanel extends JPanel
 				speedField.setText(baseController.getPokedex().get(selected).getSpeed() + "");
 				healthField.setText(baseController.getPokedex().get(selected).getHealthPoints() + "");
 				advancedArea.setText(baseController.getPokedex().get(selected).getPokemonInformation()
-						+ "\n\n" + baseController.getPokedex.get(selected).getClass().getSimpleName());
+						+ "\n\n" + baseController.getPokedex().get(selected).getClass().getSimpleName());
 				changeColorBasedOnData(baseController.getPokedex().get(selected).getClass().getSimpleName());
 				changeImageDisplay(baseController.getPokedex().get(selected).getClass().getSimpleName());
 			}
