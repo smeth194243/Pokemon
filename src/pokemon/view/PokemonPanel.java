@@ -12,7 +12,7 @@ public class PokemonPanel extends JPanel
 	private ImageIcon pokemonIcon;
 	private SpringLayout baseLayout;
 	private JButton updateButton;
-	private JComboBox pokedexSelector;
+	private JComboBox<String> pokedexSelector;
 	private JLabel pokemonLabel;
 	private JLabel healthLabel;
 	private JLabel combatLabel;
@@ -29,6 +29,7 @@ public class PokemonPanel extends JPanel
 	
 	public PokemonPanel(PokemonController baseController)
 	{
+		super();
 		this.baseController = baseController;
 		this.baseLayout = new SpringLayout();
 		//this.pokemonIcon new ImageIcon(getClass().getResource("--------.png"));
@@ -88,7 +89,36 @@ public class PokemonPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.NORTH, nameField, 60, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, nameField, 0, SpringLayout.EAST, updateButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, nameField, 6, SpringLayout.SOUTH, nameField);
+		baseLayout.putConstraint(SpringLayout.EAST, nameField, 0, SpringLayout.EAST, updateButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, healthField, 6, SpringLayout.SOUTH, nameField);
+		baseLayout.putConstraint(SpringLayout.EAST, healthField, 0, SpringLayout.EAST, updateButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, combatField, 6, SpringLayout.SOUTH, healthField);
+		baseLayout.putConstraint(SpringLayout.EAST, combatField, 0, SpringLayout.EAST, nameField);
+		baseLayout.putConstraint(SpringLayout.EAST, numberField, 0, SpringLayout.EAST, nameField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, numberField, -6, SpringLayout.NORTH, nameField);
+		baseLayout.putConstraint(SpringLayout.NORTH, updateButton, 6, SpringLayout.SOUTH, advancedArea);
+		baseLayout.putConstraint(SpringLayout.EAST, updateButton, 0, SpringLayout.EAST, advancedArea);
+		baseLayout.putConstraint(SpringLayout.SOUTH, advancedArea, -44, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, advancedArea, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, advancedLabel, 0, SpringLayout.WEST, advancedArea);
+		baseLayout.putConstraint(SpringLayout.SOUTH, advancedLabel, -6, SpringLayout.NORTH, advancedArea);
+		baseLayout.putConstraint(SpringLayout.NORTH, nameLabel, 5, SpringLayout.NORTH, nameField);
+		baseLayout.putConstraint(SpringLayout.EAST, nameLabel, 0, SpringLayout.EAST, nameLabel);
+		baseLayout.putConstraint(SpringLayout.NORTH, healthLabel, 5, SpringLayout.NORTH, healthField);
+		baseLayout.putConstraint(SpringLayout.WEST, healthLabel, 0, SpringLayout.WEST, nameField);
+		baseLayout.putConstraint(SpringLayout.NORTH, combatLabel, 5, SpringLayout.NORTH, combatField);
+		baseLayout.putConstraint(SpringLayout.WEST, combatLabel, 0, SpringLayout.WEST, nameField);
+		baseLayout.putConstraint(SpringLayout.NORTH, numberLabel, 5, SpringLayout.NORTH, numberField);
+		baseLayout.putConstraint(SpringLayout.EAST, numberLabel, -6, SpringLayout.WEST, numberField);
+		baseLayout.putConstraint(SpringLayout.NORTH, nameLabel, 5, SpringLayout.NORTH, nameField);
+		baseLayout.putConstraint(SpringLayout.EAST, nameLabel, -6, SpringLayout.WEST, nameField);
+		baseLayout.putConstraint(SpringLayout.WEST, pokemonLabel, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, pokemonLabel, 0, SpringLayout.SOUTH, updateButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, pokedexSelector, 0, SpringLayout.NORTH, nameField);
+		baseLayout.putConstraint(SpringLayout.WEST, pokedexSelector, 0, SpringLayout.WEST, pokemonLabel);
 	}
 	
 	private void setupDropdown()
@@ -119,7 +149,7 @@ public class PokemonPanel extends JPanel
 		{
 				public void actionPerformed(ActionEvent selection)
 				{
-					if(isValidName(nameField.getText()) && isValidInteger(combatField.getText())
+					if(isValidInteger(combatField.getText())
 							&& isValidInteger(healthField.getText()) && isValidDouble(speedField.getText()))
 					{
 						int selected = pokedexSelector.getSelectedIndex();
@@ -133,49 +163,7 @@ public class PokemonPanel extends JPanel
 				}
 		});
 		
-		this.addMouseListener(new MouseListener() 
-		{
-			public void mouseEntered(MouseEvent entered)
-			{
-	//			JOptionPane.showMessageDialog(baseController.getBaseFrame(), "The mouse entered the program." );
-			}
-			
-			public void mouseReleased(MouseEvent released)
-			{
-	//			System.out.println("Released");
-			}
-			
-			public void mouseExited(MouseEvent exited)
-			{
-	//			JOptionPane.showMessageDialog(baseController.getBaseFrame(), "The mouse exited the program." );
-			}
-			
-			public void mouseClicked(MouseEvent clicked)
-			{
-	//			System.out.println("Clicked");
-			}
-			
-			public void mousePressed(MouseEvent pressed)
-			{
-	//			System.out.println("Pressed");
-			}
-		});
 		
-		this.addMouseMotionListener(new MouseMotionListener()
-				{
-					public void mouseDragged(MouseEvent dragged)
-					{
-						
-					}
-					
-					public void mouseMoved(MouseEvent moved)
-					{
-						if(Math.abs(moved.getX() - updateButton.getX()) < 5 || (Math.abs(moved.getY() - updateButton.getY()) <5))
-						{
-							updateButton.setLocation(moved.getX()  + 10,  moved.getY() - 10 );
-						}
-					}
-				});
 	}
 
 	private void setRandomColor()
@@ -222,13 +210,54 @@ public class PokemonPanel extends JPanel
 	
 	private void changeImageDisplay(String name)
 	{
+		String path = "/poke/view/images/";
+		String defaultName = "PokeBall";
+		String extension = ".png";
+		try{
+			pokemonIcon = new ImageIcon(this.getClass().getResource(path + name + extension));
+		}catch(NullPointerException missingFile){
+			pokemonIcon = new ImageIcon(this.getClass().getResource(path + defaultName + extension));
+		}
+		pokemonLabel.setIcon(pokemonIcon);
+		pokemonLabel.setText("My name is: " + name);
+		repaint();
+	}
+	
+	private boolean isValidInteger(String input)
+	{
+		boolean valid = false;
 		
+		try
+		{
+			Integer.parseInt(input);
+			valid = true;
+		}
+		catch(NumberFormatException e)
+		{
+			valid = false;
+		}
+		return valid;
 	}
 	
 	private boolean isValidDouble(String input)
 	{
+		boolean valid = false;
 		
+		try
+		{
+			Double.parseDouble(input);
+			valid = true;
+		}
+		catch(NumberFormatException e)
+		{
+			valid = false;
+		}
+		return valid;
 	}
+	
+	
+	
+	
 	
 	
 }

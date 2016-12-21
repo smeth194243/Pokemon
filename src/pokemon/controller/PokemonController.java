@@ -10,7 +10,7 @@ public class PokemonController
 	private ArrayList<Pokemon> pokedex;
 	private PokemonFrame baseFrame;
 	
-	public void PokemonController()
+	public  PokemonController()
 	{
 		pokedex = new ArrayList<Pokemon>();
 		buildPokedex();
