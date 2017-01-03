@@ -18,12 +18,14 @@ public class PokemonPanel extends JPanel
 	private JLabel combatLabel;
 	private JLabel speedLabel;
 	private JLabel nameLabel;
+	private JLabel nickNameLabel;
 	private JLabel numberLabel;
 	private JLabel advancedLabel;
 	private JTextField healthField;
 	private JTextField combatField;
 	private JTextField speedField;
 	private JTextField nameField;
+	private JTextField nickNameField;
 	private JTextField numberField;
 	private JTextArea advancedArea;
 	
@@ -35,6 +37,7 @@ public class PokemonPanel extends JPanel
 		//this.pokemonIcon new ImageIcon(getClass().getResource("--------.png"));
 		this.updateButton = new JButton("Update the stats!");
 		this.nameField = new JTextField(25);
+		this.nickNameField = new JTextField(20);
 		this.combatField = new JTextField(5);
 		this.healthField = new JTextField(5);
 		this.speedField = new JTextField(5);
@@ -47,43 +50,48 @@ public class PokemonPanel extends JPanel
 		this.speedLabel = new JLabel("Speed Rate:");
 		this.numberLabel = new JLabel("Pokemon Number:");
 		this.nameLabel = new JLabel("My name is:");
+		this.nickNameLabel = new JLabel("Nick Name:");
 		this.pokemonLabel = new JLabel("The current pokemon", pokemonIcon, JLabel.CENTER);
 		
+		setupComponents();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
 	
-	private void setupPanel()
+	public void setupComponents()
 	{
-		this.setLayout(baseLayout);
-		this.setPreferredSize(new Dimension(900, 600));
-		this.setBackground(Color.DARK_GRAY);
-		
-		numberField.setEditable(false);
-		advancedArea.setEditable(false);
-		advancedArea.setWrapStyleWord(true);
-		advancedArea.setLineWrap(true);
-
-
 		pokemonLabel.setVerticalTextPosition(JLabel.BOTTOM);
 		pokemonLabel.setHorizontalTextPosition(JLabel.CENTER);
 		
-		this.add(pokedexSelector);
-		this.add(healthField);
-		this.add(healthLabel);
-		this.add(combatField);
-		this.add(combatLabel);
-		this.add(speedField);
-		this.add(speedLabel);
-		this.add(nameField);
-		this.add(nameLabel);
-		this.add(numberField);
-		this.add(numberLabel);
-		this.add(advancedArea);
-		this.add(advancedLabel);
-		this.add(pokemonLabel);
-		this.add(updateButton);
+		numberField.setEditable(false);
+		nameField.setEditable(false);
+		advancedArea.setEditable(false);
+		advancedArea.setWrapStyleWord(true);
+		advancedArea.setLineWrap(true);
+	}
+	private void setupPanel()
+	{
+		super.setLayout(baseLayout);
+		
+		this.setSize(1000, 850);
+		this.setBackground(Color.LIGHT_GRAY);
+		
+		super.add(updateButton);
+		super.add(nameField);
+		super.add(nickNameField);
+		super.add(healthField);
+		super.add(combatField);
+		super.add(numberField);
+		super.add(advancedArea);
+		super.add(pokedexSelector);
+		super.add(advancedLabel);
+		super.add(nickNameLabel);
+		super.add(healthLabel);
+		super.add(combatLabel);
+		super.add(numberLabel);
+		super.add(nameLabel);
+		super.add(pokemonLabel);
 		
 	}
 	
@@ -120,6 +128,8 @@ public class PokemonPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, pokedexSelector, 0, SpringLayout.NORTH, nameField);
 		baseLayout.putConstraint(SpringLayout.WEST, pokedexSelector, 0, SpringLayout.WEST, pokemonLabel);
 	}
+	
+	
 	
 	private void setupDropdown()
 	{

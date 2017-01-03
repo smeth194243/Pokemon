@@ -13,13 +13,14 @@ public class PokemonController
 	public  PokemonController()
 	{
 		pokedex = new ArrayList<Pokemon>();
-		buildPokedex();
+		this.buildPokedex();
 		
 		baseFrame = new PokemonFrame(this);
 	}
 	public void start()
 	{
 		JOptionPane.showMessageDialog(baseFrame, "Welcome to the Pokemon interface!");
+		new ImageIcon(getClass().getResource("/poke/view/images/Pokeball.png")));
 	}
 	
 	private void buildPokedex()
@@ -32,17 +33,13 @@ public class PokemonController
 		
 	} 
 	
-	public String[] buildPokedexText()
-	{
-		String [] pokemonNames = new String[pokedex.size()];
-		
-		for(int index = 0; index < pokedex.size(); index++)
-		{
-			pokemonNames[index] = pokedex.get(index).getName();
+	public String[] buildPokedexText() {
+		String[] pokemonNames = new String[pokedex.size()];
+		for(int index = 0; index < pokedex.size(); index++){
+			Pokemon pokemon = pokedex.get(index);
+			pokemonNames[index] = pokemon.getName() + " - " + pokemon.getNickName();
 		}
-		
 		return pokemonNames;
-		
 	}
 	
 	public ArrayList<Pokemon> getPokedex()
@@ -50,9 +47,10 @@ public class PokemonController
 		return pokedex;
 	}
 	
-	public void updateSelected(int index, String name, int combat, int health, double speed)
-	{
-		Pokemon current = pokedex.get(index);
-		this.name = name;
+	public void updateSelected(int index, String name, int health, int defense){
+		Pokemon pokemon = pokedex.get(index);
+		pokemon.setNickName(name);
+		pokemon.setHealthPoints(health);
+		pokemon.setCombatPoints(defense);
 	}
 }
