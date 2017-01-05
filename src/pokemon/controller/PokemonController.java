@@ -47,7 +47,8 @@ public class PokemonController
 		return pokedex;
 	}
 	
-	public void updateSelected(int index, String name, int health, int defense){
+	public void updateSelected(int index, String name, int health, int defense, Double speed)
+	{
 		Pokemon pokemon = pokedex.get(index);
 		pokemon.setNickName(name);
 		pokemon.setHealthPoints(health);
