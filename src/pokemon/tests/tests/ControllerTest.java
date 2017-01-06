@@ -1,4 +1,4 @@
-package poke.tests;
+package pokemon.tests.tests;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import poke.controller.PokemonController;
-import poke.model.Pokemon;
-import poke.view.PokemonFrame;
+import pokemon.controller.PokemonController;
+import pokemon.model.Pokemon;
+import pokemon.view.PokemonFrame;
 
 public class ControllerTest
 {
@@ -38,7 +38,7 @@ public class ControllerTest
 		assertTrue("Pokedex has something in it", testedController.getPokedex().size() > 0);
 		assertFalse("Pokemon need real names", testedController.getPokedex().get(0).getName().equals(""));
 		testedController.updateSelected(0, "JUnit", 0, 0, .0);
-		assertTrue("Update method failed", testedController.getPokedex().get(0).getName().equals("JUnit"));
+		assertTrue("Update method failed", testedController.getPokedex().get(0).getNickName().equals("JUnit"));
 	}
 
 	@Test

@@ -1,12 +1,14 @@
-package poke.tests;
+package pokemon.tests.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import poke.view.*;
-import poke.controller.PokemonController;
+import pokemon.view.*;
+import pokemon.view.PokemonFrame;
+import pokemon.view.PokemonPanel;
+import pokemon.controller.PokemonController;
 
 
 public class FrameTest

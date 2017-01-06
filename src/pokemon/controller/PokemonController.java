@@ -3,6 +3,8 @@ package pokemon.controller;
 import java.util.ArrayList;
 import pokemon.model.*;
 import pokemon.view.PokemonFrame;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class PokemonController
@@ -20,7 +22,7 @@ public class PokemonController
 	public void start()
 	{
 		JOptionPane.showMessageDialog(baseFrame, "Welcome to the Pokemon interface!");
-		new ImageIcon(getClass().getResource("/poke/view/images/Pokeball.png")));
+		new ImageIcon(getClass().getResource("/poke/view/images/Pokeball.png"));
 	}
 	
 	private void buildPokedex()
@@ -30,6 +32,7 @@ public class PokemonController
 		pokedex.add(new Butterfree("Big Butterfly"));
 		pokedex.add(new Pidgey("Tweety Bird"));
 		pokedex.add(new Caterpie("Swift Slug"));
+		pokedex.add(new Pidgey("I can has Razzberry?"));
 		
 	} 
 	
@@ -53,5 +56,10 @@ public class PokemonController
 		pokemon.setNickName(name);
 		pokemon.setHealthPoints(health);
 		pokemon.setCombatPoints(defense);
+	}
+	
+	public PokemonFrame getBaseFrame()
+	{
+		return baseFrame;
 	}
 }
